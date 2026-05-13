@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rapport officiel</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 24px;
+      max-width: 720px;
+      width: 100%;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #a3a3a3;
+      border: 1px solid #333;
+      border-radius: 999px;
+      padding: 6px 18px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease 0.3s forwards;
+    }
+
+    .title {
+      font-size: clamp(2.6rem, 8vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 32px;
+    }
+
+    .title .line {
+      display: block;
+      overflow: hidden;
+    }
+
+    .title .line span {
+      display: inline-block;
+      transform: translateY(110%);
+      animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .title .line:nth-child(1) span { animation-delay: 0.5s; }
+    .title .line:nth-child(2) span { animation-delay: 0.7s; }
+    .title .line:nth-child(3) span {
+      animation-delay: 0.9s;
+      background: linear-gradient(90deg, #ff6b6b, #ffd93d, #ff6b6b);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards,
+                 shine 3s linear 1.6s infinite;
+    }
+
+    @keyframes slideUp {
+      to { transform: translateY(0); }
+    }
+
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+
+    .sub {
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      font-weight: 400;
+      color: #888;
+      max-width: 480px;
+      margin: 0 auto 52px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeIn 0.6s ease 1.4s forwards;
+    }
+
+    .stat-block {
+      opacity: 0;
+      animation: fadeIn 0.6s ease 1.7s forwards;
+    }
+
+    .stat-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .stat-label span:last-child { color: #fff; }
+
+    .bar-track {
+      background: #1a1a1a;
+      border-radius: 999px;
+      height: 6px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+      animation: fillBar 1.4s cubic-bezier(0.16, 1, 0.3, 1) 2s forwards;
+    }
+
+    @keyframes fillBar {
+      to { width: 100%; }
+    }
+
+    .certified {
+      margin-top: 48px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #333;
+      opacity: 0;
+      animation: fadeIn 0.5s ease 3.2s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1.1em;
+      background: #fff;
+      margin-left: 6px;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="badge">⚡ Rapport du jour — confidentiel</div>
+
+    <h1 class="title">
+      <span class="line"><span>Journée de merde ?</span></span>
+      <span class="line"><span>Peut-être.</span></span>
+      <span class="line"><span>Mais n'oublie pas que tu restes la plus douce princesse de cette planète.</span></span>
+    </h1>
+
+    <p class="sub">
+      Peu importe ce que cette journée t'a fait subir —
+      elle n'a pas réussi à changer un seul fait établi.
+      <span class="cursor"></span>
+    </p>
+
+    <div class="stat-block">
+      <div class="stat-label">
+        <span>Niveau de beauté actuel</span>
+        <span>MAX</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill"></div>
+      </div>
+    </div>
+
+    <p class="certified">✓ 100 % certifié — mis à jour en temps réel</p>
+
+  </div>
+</body>
+</html>
