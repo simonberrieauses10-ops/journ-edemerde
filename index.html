@@ -54,11 +54,11 @@
       animation: fadeIn 0.5s ease 0.3s forwards;
     }
 
+    /* Titre */
     .title {
-      font-size: clamp(1.4rem, 4.5vw, 3rem);
       font-weight: 800;
       line-height: 1.15;
-      margin-bottom: 32px;
+      margin-bottom: 48px;
     }
 
     .title .line {
@@ -72,10 +72,16 @@
       animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
+    /* Lignes 1 & 2 — petites */
+    .title .line:nth-child(1) { font-size: clamp(1.3rem, 4vw, 2.4rem); }
+    .title .line:nth-child(2) { font-size: clamp(1.3rem, 4vw, 2.4rem); }
+
     .title .line:nth-child(1) span { animation-delay: 0.5s; }
     .title .line:nth-child(2) span { animation-delay: 0.7s; }
+
+    /* Ligne 3 — plus grosse + couleur */
+    .title .line:nth-child(3) { font-size: clamp(1.8rem, 6vw, 4rem); margin-top: 12px; }
     .title .line:nth-child(3) span {
-      animation-delay: 0.9s;
       background: linear-gradient(90deg, #ff6b6b, #ffd93d, #ff6b6b);
       background-size: 200% auto;
       -webkit-background-clip: text;
@@ -88,86 +94,109 @@
     @keyframes slideUp {
       to { transform: translateY(0); }
     }
-
     @keyframes shine {
       to { background-position: 200% center; }
     }
 
-    .sub {
-      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-      font-weight: 400;
-      color: #888;
-      max-width: 480px;
-      margin: 0 auto 52px;
-      line-height: 1.7;
+    /* Échelle pain */
+    .pain-block {
       opacity: 0;
       animation: fadeIn 0.6s ease 1.4s forwards;
     }
 
-    .stat-block {
-      opacity: 0;
-      animation: fadeIn 0.6s ease 1.7s forwards;
-    }
-
-    .stat-label {
+    .pain-label {
       display: flex;
       justify-content: space-between;
-      font-size: 0.75rem;
+      align-items: center;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #555;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .pain-label .pain-title { color: #fff; font-size: 0.8rem; }
+
+    .pain-scale {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 14px;
     }
 
-    .stat-label span:last-child { color: #fff; }
+    .pain-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: popIn 0.4s ease forwards;
+    }
+    .pain-item:nth-child(1) { animation-delay: 1.6s; }
+    .pain-item:nth-child(2) { animation-delay: 1.8s; }
+    .pain-item:nth-child(3) { animation-delay: 2.0s; }
+    .pain-item:nth-child(4) { animation-delay: 2.2s; }
+    .pain-item:nth-child(5) { animation-delay: 2.4s; }
 
-    .bar-track {
-      background: #1a1a1a;
-      border-radius: 999px;
-      height: 6px;
-      overflow: hidden;
+    @keyframes popIn {
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .bar-fill {
-      height: 100%;
-      width: 0%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #ff6b6b, #ffd93d);
-      animation: fillBar 1.4s cubic-bezier(0.16, 1, 0.3, 1) 2s forwards;
+    .pain-emoji {
+      font-size: 1.6rem;
+      filter: grayscale(1);
+      transition: filter 0.3s;
+    }
+    .pain-item.active .pain-emoji {
+      filter: grayscale(0);
+      animation: bounce 0.6s ease 2.6s both;
+    }
+    @keyframes bounce {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.4); }
+      70%  { transform: scale(0.9); }
+      100% { transform: scale(1.1); }
     }
 
-    @keyframes fillBar {
-      to { width: 100%; }
+    .pain-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #222;
+      border: 2px solid #333;
+    }
+    .pain-item.active .pain-dot {
+      background: #ffd93d;
+      border-color: #ffd93d;
+      box-shadow: 0 0 8px #ffd93d;
     }
 
+    .pain-sublabel {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #333;
+    }
+    .pain-item.active .pain-sublabel {
+      color: #ffd93d;
+    }
+
+    /* Certifié */
     .certified {
-      margin-top: 48px;
+      margin-top: 40px;
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: #333;
       opacity: 0;
-      animation: fadeIn 0.5s ease 3.2s forwards;
+      animation: fadeIn 0.5s ease 3s forwards;
     }
 
     @keyframes fadeIn {
       to { opacity: 1; }
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 3px;
-      height: 1.1em;
-      background: #fff;
-      margin-left: 6px;
-      vertical-align: middle;
-      animation: blink 1s step-end infinite;
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0; }
     }
   </style>
 </head>
@@ -182,19 +211,37 @@
       <span class="line"><span>Mais n'oublie pas que tu restes la plus douce princesse de cette planète.</span></span>
     </h1>
 
-    <p class="sub">
-      Peu importe ce que cette journée t'a fait subir —
-      elle n'a pas réussi à changer un seul fait établi.
-      <span class="cursor"></span>
-    </p>
-
-    <div class="stat-block">
-      <div class="stat-label">
-        <span>Niveau de beauté actuel</span>
-        <span>MAX</span>
+    <div class="pain-block">
+      <div class="pain-label">
+        <span>Échelle du pain</span>
+        <span class="pain-title">🥖 Pain au céréales</span>
       </div>
-      <div class="bar-track">
-        <div class="bar-fill"></div>
+      <div class="pain-scale">
+        <div class="pain-item">
+          <div class="pain-emoji">🍞</div>
+          <div class="pain-dot"></div>
+          <div class="pain-sublabel">Pain blanc</div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-emoji">🥐</div>
+          <div class="pain-dot"></div>
+          <div class="pain-sublabel">Croissant</div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-emoji">🥖</div>
+          <div class="pain-dot"></div>
+          <div class="pain-sublabel">Baguette</div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-emoji">🫓</div>
+          <div class="pain-dot"></div>
+          <div class="pain-sublabel">Pain complet</div>
+        </div>
+        <div class="pain-item active">
+          <div class="pain-emoji">🌾</div>
+          <div class="pain-dot"></div>
+          <div class="pain-sublabel">Aux céréales</div>
+        </div>
       </div>
     </div>
 
